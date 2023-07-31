@@ -12,7 +12,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <Partytown forward={['datalayer.push']} />
       </Head>
 
-      <Script defer data-domain="pokemon.gurkz.me" src="https://analytics.gurkz.me/js/script.js" type="text/partytown"></Script>
+      <Script defer data-domain="pokemon.gurkz.me" src="https://analytics.gurkz.me/js/script.tagged-events.js" type="text/partytown"></Script>
       <main className='p-2'>
         <Component {...pageProps} />
       </main>
