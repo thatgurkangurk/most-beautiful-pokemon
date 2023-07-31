@@ -8,11 +8,13 @@ import { PokemonType } from '@/types/Pokemon'
 import Wavy from '@/components/WavyText'
 import { motion } from 'framer-motion'
 import { Fade } from '@/anims'
+import { usePlausible } from 'next-plausible'
 
 const LEADERBOARD_NAV = '/prettiest'
 
 const Home: NextPage = () => {
   const [pokemonList, setPokemonList] = useState<PokemonType[]>([])
+  const plausible = usePlausible();
   const [fetchedEnoughPokemon, setFetchedEnoughPokemon] = useState<boolean>(false)
 
   const { data: pokemon, refetch } = trpc.pokemon.getRandom.useQuery(undefined, {
@@ -40,6 +42,12 @@ const Home: NextPage = () => {
 
   // Voting function
   const handleVote = (id: number, imgUrl: string, name: string) => {
+    plausible('vote', {
+      props: {
+        id: id,
+        name: name
+      }
+    })
     vote({ id, imgUrl, name })
   }
 
