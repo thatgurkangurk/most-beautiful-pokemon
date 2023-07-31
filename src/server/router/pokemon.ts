@@ -3,18 +3,19 @@ import { baseProcedure, router } from "./trpc";
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 
-// get random pokemon id (max id is 1281)
-const getRandomPokemonID = () => Math.floor(Math.random() * 1281);
+// get random pokemon id (max id is 1010)
+const getRandomPokemonID = () => Math.floor(Math.random() * 1010);
 
-// limit the ID to be 1 through 1281
-const limitPokemonID = (id: number) => Math.max(1, Math.min(1281, id));
+// limit the ID to be 1 through 1010
+const limitPokemonID = (id: number) => Math.max(1, Math.min(1010, id));
 
 export const pokeRouter = router({
     getRandom: baseProcedure.query(async () => {
         const id = limitPokemonID(getRandomPokemonID());
 
         try {
-            const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+            const uri = `https://pokeapi.co/api/v2/pokemon/${id}`;
+            const res = await fetch(uri);
             const pokemon = (await res.json()) as PokemonType
             return pokemon
         } catch (err) {
