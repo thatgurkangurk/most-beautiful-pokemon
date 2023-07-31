@@ -10,6 +10,7 @@ const Providers: FC<ProvidersProps> = ({ children }) => {
         <PlausibleProvider selfHosted domain="pokemon.gurkz.me" customDomain="https://analytics.gurkz.me">
             {children}
         </PlausibleProvider>
+
     )
 }
 

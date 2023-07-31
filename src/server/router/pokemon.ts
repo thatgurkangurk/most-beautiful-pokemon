@@ -2,6 +2,7 @@ import { PokemonType } from "@/types/Pokemon";
 import { baseProcedure, router } from "./trpc";
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
+import { getRawVotes } from "@/pages/api/raw-votes";
 
 // get random pokemon id (max id is 1010)
 const getRandomPokemonID = () => Math.floor(Math.random() * 1009);
@@ -58,5 +59,8 @@ export const pokeRouter = router({
         })
 
         return pokemon;
+    }),
+    getRaw: baseProcedure.query(async () => {
+        return await getRawVotes();
     })
 })
