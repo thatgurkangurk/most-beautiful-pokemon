@@ -4,13 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "pnpm run partytown && next build",
+    "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "partytown": "partytown copylib public/~partytown"
+    "lint": "next lint"
   },
   "dependencies": {
-    "@builder.io/partytown": "^0.8.0",
     "@types/node": "20.4.5",
     "@types/react": "18.2.17",
     "@types/react-dom": "18.2.7",
@@ -18,6 +16,7 @@
     "eslint": "8.46.0",
     "eslint-config-next": "13.4.12",
     "next": "13.4.12",
+    "next-plausible": "^3.10.1",
     "postcss": "8.4.27",
     "react": "18.2.0",
     "react-dom": "18.2.0",
