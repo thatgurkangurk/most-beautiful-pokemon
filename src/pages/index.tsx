@@ -66,7 +66,7 @@ const Home: NextPage = () => {
       {/* Make an either or choice between the 2 pokemon in pokeList */}
       <div className='flex min-h-screen flex-col items-center justify-center py-2'>
         <main className='flex w-full flex-col items-center justify-center px-20 text-center'>
-          <motion.h1 variants={Fade} className='pb-2 text-6xl font-bold'>which pokémon is prettiest?</motion.h1>
+          <Wavy className='pb-2 sm:text-4xl md:text-6xl font-bold' text='which pokémon is prettiest?' heading='h1'></Wavy>
           <Wavy heading='p' className='italic mb-6 text-gray-500' text={`a "study" ran by gurkan to see which pokémon the internet prefers`}></Wavy>
           <div className='flex min-h-[15rem] items-center'>
             {pokemonList[0] && pokemonList[1] && (
