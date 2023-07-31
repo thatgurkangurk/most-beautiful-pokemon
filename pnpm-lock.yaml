@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@builder.io/partytown':
+    specifier: ^0.8.0
+    version: 0.8.0
   '@types/node':
     specifier: 20.4.5
     version: 20.4.5
@@ -59,6 +62,11 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       regenerator-runtime: 0.13.11
+    dev: false
+
+  /@builder.io/partytown@0.8.0:
+    resolution: {integrity: sha512-M6H7nSMwW2dHd1/MQ+9J1Jqdw22uhl1nKv90kIiL9G7gjFVqqouQp4qSS1oZclmtW1XjAa4Q5UnbHB4iytmxZA==}
+    hasBin: true
     dev: false
 
   /@eslint-community/eslint-utils@4.4.0(eslint@8.46.0):
