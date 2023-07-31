@@ -1,19 +1,26 @@
-import { Providers } from '@/components/Providers'
 import '@/styles/globals.css'
-import type { AppProps } from 'next/app'
-import Head from 'next/head'
+import type { NextPage } from 'next';
+import type { AppType, AppProps } from 'next/app';
+import type { ReactElement, ReactNode } from 'react';
+import { DefaultLayout } from '@/components/Layout';
+import { trpc } from '@/utils/trpc';
 
-export default function App({ Component, pageProps }: AppProps) {
-  return (
-    <>
-      <Providers>
-        <Head>
-          <title>prettiest pokémon</title>
-        </Head>
-        <main className='p-2'>
-          <Component {...pageProps} />
-        </main>
-      </Providers>
-    </>
-  )
-}
+export type NextPageWithLayout<
+  TProps = Record<string, unknown>,
+  TInitialProps = TProps,
+> = NextPage<TProps, TInitialProps> & {
+  getLayout?: (page: ReactElement) => ReactNode;
+};
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout;
+};
+
+const App = (({ Component, pageProps }: AppPropsWithLayout) => {
+  const getLayout =
+    Component.getLayout ?? ((page) => <DefaultLayout>{page}</DefaultLayout>);
+
+  return getLayout(<Component {...pageProps} />);
+}) as AppType;
+
+export default trpc.withTRPC(App);
