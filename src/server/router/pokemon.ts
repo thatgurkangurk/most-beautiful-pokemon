@@ -4,10 +4,10 @@ import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 
 // get random pokemon id (max id is 1010)
-const getRandomPokemonID = () => Math.floor(Math.random() * 1010);
+const getRandomPokemonID = () => Math.floor(Math.random() * 1009);
 
 // limit the ID to be 1 through 1010
-const limitPokemonID = (id: number) => Math.max(1, Math.min(1010, id));
+const limitPokemonID = (id: number) => Math.max(1, Math.min(1009, id));
 
 export const pokeRouter = router({
     getRandom: baseProcedure.query(async () => {
