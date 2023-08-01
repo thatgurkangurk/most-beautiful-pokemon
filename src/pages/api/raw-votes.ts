@@ -4,7 +4,9 @@ import { NextApiRequest, NextApiResponse } from "next";
 export async function getRawVotes() {
     const pokemon = await prisma.pokemon.findMany({
         orderBy: {
-            votes: 'desc'
+            votes: {
+                _count: 'desc'
+            }
         },
         select: {
             id: true,
