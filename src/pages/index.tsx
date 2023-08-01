@@ -108,7 +108,7 @@ const PokemonButton: FC<{ pokemon: PokemonType | undefined, resetPokemon: () => 
           pokemon!.name
         )
       }
-      className={`rounded-md p-8 shadow w-full grid place-items-center ${extClassName}`}>
+      className={`rounded-m p-8 shadow w-full grid place-items-center ${extClassName}`}>
       <PokemonImage pokemon={pokemon} />
     </button>
   )
