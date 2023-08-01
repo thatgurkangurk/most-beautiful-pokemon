@@ -1,10 +1,7 @@
 import { NextPage } from 'next'
 import Image from 'next/image'
-import Link from 'next/link'
 import { trpc } from '../utils/trpc'
 import { FC } from 'react'
-import { PokemonType } from '@/types/Pokemon'
-import Wavy from '@/components/WavyText'
 
 // Capitalize first letter of string
 const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1)
@@ -15,9 +12,6 @@ const Prettiest: NextPage = () => {
     return (
         <div className='mx-auto flex max-w-5xl flex-col items-center py-12'>
             <h1 className='text-center text-2xl font-bold'>The currently most popular pokémon:</h1>
-            <Link href='/' className='pt-4 text-xs underline'>
-                Back to voting
-            </Link>
             <ul className='mx-auto grid w-1/2 grid-cols-2 place-items-center py-6'>
                 <PokemonList pokemon={pokemon} />
             </ul>

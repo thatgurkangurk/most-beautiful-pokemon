@@ -5,6 +5,7 @@ import { Providers } from './Providers';
 import { motion } from 'framer-motion';
 import { FadeContainer } from '@/anims';
 import { useRouter } from 'next/router';
+import { Navbar } from './Navbar';
 
 type LayoutProps = { children: ReactNode };
 
@@ -16,6 +17,7 @@ export const DefaultLayout = ({ children }: LayoutProps) => {
                 <Head>
                     <title>prettiest pokémon</title>
                 </Head>
+                <Navbar />
                 <motion.div key={router.route} initial="initial" animate="animate" variants={{
                     initial: {
                         opacity: 0
