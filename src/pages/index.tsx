@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Wavy from '@/components/WavyText'
-import { VoteButtons } from '@/components/VoteButton'
+import { VoteButtons } from '@/components/Pokemon/Vote'
 import { motion } from 'framer-motion'
 import { Fade } from '@/anims'
 
