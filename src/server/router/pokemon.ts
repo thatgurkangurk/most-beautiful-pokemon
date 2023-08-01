@@ -43,13 +43,15 @@ export const pokeRouter = router({
             },
             create: {
                 id: input.id,
-                votes: 1,
+                votes: {
+                    create: {}
+                },
                 imgUrl: input.imgUrl,
                 name: input.name
             },
             update: {
                 votes: {
-                    increment: 1
+                    create: {}
                 }
             }
         })
@@ -58,8 +60,16 @@ export const pokeRouter = router({
         const pokemon = await ctx.prisma.pokemon.findMany({
             take: 20,
             orderBy: {
-                votes: 'desc'
+                votes: {
+                    _count: 'desc'
+                }
             },
+            select: {
+                id: true,
+                votes: true,
+                name: true,
+                imgUrl: true
+            }
         })
 
         return pokemon;

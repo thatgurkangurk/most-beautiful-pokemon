@@ -11,8 +11,14 @@ datasource db {
 }
 
 model Pokemon {
-  id     Int    @id @default(autoincrement())
-  votes  Int    @default(0)
+  id     Int    @id @unique @default(autoincrement())
   imgUrl String
   name   String
+  votes  Vote[]
+}
+
+model Vote {
+  id        String  @id @default(cuid())
+  for       Pokemon @relation(fields: [pokemonId], references: [id])
+  pokemonId Int
 }

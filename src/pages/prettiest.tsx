@@ -2,6 +2,7 @@ import { NextPage } from 'next'
 import Image from 'next/image'
 import { trpc } from '../utils/trpc'
 import { FC } from 'react'
+import { Vote } from '@prisma/client'
 
 // Capitalize first letter of string
 const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1)
@@ -22,7 +23,7 @@ const Prettiest: NextPage = () => {
 const PokemonList: FC<{
     pokemon: {
         id: number;
-        votes: number;
+        votes: Vote[];
         imgUrl: string;
         name: string;
     }[] | undefined
@@ -37,7 +38,7 @@ const PokemonList: FC<{
                 </div>
                 <div className='flex flex-col'>
                     <h4>{capitalize(p.name)}</h4>
-                    <p className='text-xs text-gray-500'>Votes: {p.votes}</p>
+                    <p className='text-xs text-gray-500'>Votes: {p.votes.length}</p>
                 </div>
             </li>
         ))}
