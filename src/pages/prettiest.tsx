@@ -12,7 +12,7 @@ const Prettiest: NextPage = () => {
     return (
         <div className='mx-auto flex max-w-5xl flex-col items-center py-12'>
             <h1 className='text-center text-2xl font-bold'>The currently most popular pokémon:</h1>
-            <ul className='mx-auto grid w-1/2 grid-cols-2 place-items-center py-6'>
+            <ul className='mx-auto grid grid-cols-2 items-center sm:gap-2 place-items-center py-6'>
                 <PokemonList pokemon={pokemon} />
             </ul>
         </div>
