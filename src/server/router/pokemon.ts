@@ -12,13 +12,17 @@ const limitPokemonID = (id: number) => Math.max(1, Math.min(1009, id));
 
 export const pokeRouter = router({
     getRandom: baseProcedure.query(async () => {
-        const id = limitPokemonID(getRandomPokemonID());
-
-        try {
+        const pokemonList: PokemonType[] = [];
+        while (pokemonList.length < 2) {
+            const id = limitPokemonID(getRandomPokemonID());
             const uri = `https://pokeapi.co/api/v2/pokemon/${id}`;
             const res = await fetch(uri);
-            const pokemon = (await res.json()) as PokemonType
-            return pokemon
+            const pokemon = (await res.json()) as PokemonType;
+            pokemonList.push(pokemon);
+        }
+
+        try {
+            return pokemonList
         } catch (err) {
             throw new TRPCError({
                 code: 'INTERNAL_SERVER_ERROR',

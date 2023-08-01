@@ -1,5 +1,5 @@
 import { FC, ReactNode } from "react";
-import PlausibleProvider from 'next-plausible'
+import PlausibleProvider from 'next-plausible';
 
 interface ProvidersProps {
     children: ReactNode
