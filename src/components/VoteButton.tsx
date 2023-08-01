@@ -12,6 +12,7 @@ import { Fade } from "@/anims"
 const pokemonListAtom = atom<PokemonType[]>([]);
 const fetchedEnoughPokemonAtom = atom<boolean>(false);
 const VoteButtons: FC = () => {
+    const plausible = usePlausible();
     const [pokemonList, setPokemonList] = useAtom(pokemonListAtom);
     const [fetchedEnoughPokemon, setFetchedEnoughPokemon] = useAtom(fetchedEnoughPokemonAtom);
 
@@ -41,7 +42,10 @@ const VoteButtons: FC = () => {
                         <VoteButton className="bg-red-400" pokemon={pokemonList[1]} isLoading={isFetching} />
                     </motion.div>
                 </div>
-                <Button variant="destructive" className="" onClick={() => resetPokemon()}>both are ugly</Button>
+                <Button variant="destructive" className="" onClick={() => {
+                    plausible('skip');
+                    resetPokemon();
+                }}>both are ugly</Button>
 
             </>
         </>
