@@ -1,5 +1,5 @@
 import { prisma } from "@/server/db/client";
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextApiResponse } from "next";
 
 export async function getRawVotes() {
     const pokemon = await prisma.pokemon.findMany({
@@ -19,7 +19,6 @@ export async function getRawVotes() {
 }
 
 export default async function handler(
-    req: NextApiRequest,
     res: NextApiResponse
 ) {
     const raw = await getRawVotes();

@@ -8,6 +8,7 @@ export const Navbar = () => {
             <Link href="/prettiest">leaderboard</Link>
             <Link href="/privacy">privacy</Link>
             <Link href="/about">about</Link>
+            <Link href="/raw">raw data</Link>
         </nav>
     )
 }

@@ -2,7 +2,6 @@ import { PokemonType } from "@/types/Pokemon";
 import { baseProcedure, router } from "./trpc";
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
-import { getRawVotes } from "@/pages/api/raw-votes";
 
 // get random pokemon id (max id is 1010)
 const getRandomPokemonID = () => Math.floor(Math.random() * 1009);
@@ -74,7 +73,38 @@ export const pokeRouter = router({
 
         return pokemon;
     }),
-    getRaw: baseProcedure.query(async () => {
-        return await getRawVotes();
+    getRaw: baseProcedure.input(z.object({
+        limit: z.number().min(1).max(1009).default(20),
+        cursor: z.number().nullish()
+    })).query(async ({ input, ctx }) => {
+        const limit = input.limit ?? 50;
+        const { cursor } = input;
+        const pokemon = await ctx.prisma.pokemon.findMany({
+            take: limit + 1,
+            orderBy: [
+                {
+                    votes: {
+                        _count: 'desc'
+                    }
+                }
+            ],
+            cursor: cursor ? { id: cursor } : undefined,
+            include: {
+                votes: true
+            }
+        });
+
+        let nextCursor: typeof cursor | undefined = undefined;
+
+        if (pokemon.length > limit) {
+            const nextItem = pokemon.pop() as typeof pokemon[number];
+
+            nextCursor = nextItem.id;
+        }
+
+        return {
+            pokemon,
+            nextCursor
+        }
     })
 })
