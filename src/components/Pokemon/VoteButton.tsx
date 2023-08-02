@@ -4,7 +4,7 @@ import { FC } from "react";
 import PokemonInfo from "./PokemonInfo";
 
 const VoteButton: FC<{ pokemon: PokemonType | undefined, className: string, isLoading: boolean }> = ({ pokemon, className: extClassName, isLoading }) => {
-    const { vote, } = usePokemon();
+    const { vote } = usePokemon();
 
     return (
         <button

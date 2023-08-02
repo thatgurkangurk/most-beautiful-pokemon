@@ -6,6 +6,7 @@ import { Vote } from '@prisma/client'
 
 // Capitalize first letter of string
 const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1)
+const getImageForMon = (mon: number) => `/api/image/${mon}.png`;
 
 const Prettiest: NextPage = () => {
     const { data: pokemon } = trpc.pokemon.getPrettiest.useQuery();
@@ -24,7 +25,6 @@ const PokemonList: FC<{
     pokemon: {
         id: number;
         votes: Vote[];
-        imgUrl: string;
         name: string;
     }[] | undefined
 }> = ({ pokemon }) => {
@@ -34,7 +34,7 @@ const PokemonList: FC<{
         {pokemon?.map((p) => (
             <li key={p.id} className='flex w-full items-center gap-2'>
                 <div className='relative h-12 w-12'>
-                    <Image src={p.imgUrl} layout='fill' alt='pokemon' objectFit='cover' />
+                    <Image src={getImageForMon(p.id)} layout='fill' alt='pokemon' objectFit='cover' />
                 </div>
                 <div className='flex flex-col'>
                     <h4>{capitalize(p.name)}</h4>
