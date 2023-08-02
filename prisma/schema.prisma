@@ -11,8 +11,8 @@ datasource db {
 }
 
 model Pokemon {
-  id     Int    @id @unique @default(autoincrement())
-  imgUrl String
+  id     Int     @id @unique @default(autoincrement())
+  imgUrl String?
   name   String
   votes  Vote[]
 }
