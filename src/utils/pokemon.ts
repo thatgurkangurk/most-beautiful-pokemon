@@ -10,23 +10,23 @@ const usePokemon = () => {
     const queryKey = getQueryKey(trpc.pokemon.getRandom);
 
     const { mutate } = trpc.pokemon.vote.useMutation({
-        onSuccess: (_data, _variables, _ctx) => {
+        onMutate: () => {
             getQueryKey(trpc.pokemon.getRandom)
             queryClient.invalidateQueries()
         }
     })
     const vote = ({ id, imgUrl, name }: { id: number, imgUrl: string, name: string }) => {
+        mutate({
+            id,
+            imgUrl,
+            name
+        });
         plausible('vote', {
             props: {
                 id: id,
                 name: name
             }
         })
-        mutate({
-            id,
-            imgUrl,
-            name
-        });
     };
     const skip = () => {
         plausible('skip');
